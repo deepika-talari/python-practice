@@ -84,3 +84,44 @@ git push -u origin main
 If asked “Why ED25519 instead of RSA?”, say:
 
 ED25519 is faster, more secure, and uses smaller keys compared to RSA. GitHub recommends it for SSH authentication.
+
+
+
+1️⃣ eval "$(ssh-agent -s)"
+🔹 What this command does
+
+It starts the SSH agent and makes it available to your current terminal session.
+
+🔹 Break it down
+
+ssh-agent → Program that manages SSH keys in memory
+
+-s → Outputs shell commands (for bash/zsh)
+
+$(...) → Runs the command inside and captures its output
+
+eval → Executes that output in your current shell
+
+🔹 In simple words
+
+“Start the SSH agent and connect it to my current terminal.”
+
+Without eval, the agent would start but your terminal wouldn’t know how to talk to it.
+
+2️⃣ ssh-add ~/.ssh/id_ed25519
+🔹 What this command does
+
+It adds your private SSH key to the running SSH agent.
+
+🔹 Break it down
+
+ssh-add → Tool to load keys into the SSH agent
+
+~ → Your home directory
+
+.ssh/ → Folder where SSH keys are stored
+
+id_ed25519 → Your private SSH key file
+
+⚠️ Important:
+You add the private key, NOT the .pub file.
